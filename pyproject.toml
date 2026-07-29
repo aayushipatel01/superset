@@ -228,6 +228,9 @@ development = [
     "flask-testing",
     "freezegun",
     "grpcio>=1.82.1",
+    # pulled in transitively by keyring; <6.1.0 has a path traversal in
+    # jaraco.context.tarball() (GHSA-58pv-8j8x-9vj2)
+    "jaraco-context>=6.1.0",
     "openapi-spec-validator",
     "parameterized",
     "pip",
