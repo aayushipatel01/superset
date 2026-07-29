@@ -93,6 +93,9 @@
         color: var(--muted);
         font-size: 11px;
       }
+      .tablewrap {
+        overflow-x: auto;
+      }
       table {
         width: 100%;
         border-collapse: collapse;
@@ -366,8 +369,15 @@
       }
 
       const sessionUrl = (id) =>
-        `https://app.devin.ai/sessions/${String(id).replace(/^devin-/, "")}`;
-      const issueUrl = (n) => `https://github.com/${REPO}/issues/${n}`;
+        `https://app.devin.ai/sessions/${encodeURIComponent(String(id).replace(/^devin-/, ""))}`;
+      const issueUrl = (n) =>
+        `https://github.com/${REPO}/issues/${encodeURIComponent(n)}`;
+      const prLink = (url) => {
+        const label = esc(String(url).replace(/^https:\/\/github\.com\//, ""));
+        return /^https:\/\/github\.com\//.test(url)
+          ? `<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>`
+          : label;
+      };
 
       async function load() {
         const override = new URLSearchParams(location.search).get("data");
@@ -425,14 +435,10 @@
             (s) => `
           <div class="sess">
             <div class="meta">
-              <span><strong>Issue <a href="${issueUrl(s.issue_number)}" target="_blank" rel="noopener">#${esc(s.issue_number)}</a></strong></span>
-              <span>Session <a href="${sessionUrl(s.session_id)}" target="_blank" rel="noopener">${esc(s.session_id)}</a></span>
+              <span><strong>Issue <a href="${esc(issueUrl(s.issue_number))}" target="_blank" rel="noopener">#${esc(s.issue_number)}</a></strong></span>
+              <span>Session <a href="${esc(sessionUrl(s.session_id))}" target="_blank" rel="noopener">${esc(s.session_id)}</a></span>
               <span>Status ${badge(s.status)}</span>
-              <span>PR ${
-                s.pr_url
-                  ? `<a href="${esc(s.pr_url)}" target="_blank" rel="noopener">${esc(String(s.pr_url).replace(/^https:\/\/github\.com\//, ""))}</a>`
-                  : "—"
-              }</span>
+              <span>PR ${s.pr_url ? prLink(s.pr_url) : "—"}</span>
               <span>CI ${badge(s.ci_status)}</span>
             </div>
             <div class="scans">
@@ -456,7 +462,7 @@
           return;
         }
         const byRun = (id) => sessions.filter((s) => s.run_id === id);
-        $("runs").innerHTML = `<table>
+        $("runs").innerHTML = `<div class="tablewrap"><table>
           <thead><tr>
             <th style="width:14px"></th><th>Run</th><th>Trigger</th><th>Started</th>
             <th>Duration</th><th class="num">Findings</th><th class="num">Issues</th>
@@ -479,7 +485,7 @@
             </tr>
             ${drilldown(byRun(r.run_id)).replace("<tr>", `<tr class="dd" data-idx="${i}" style="display:none">`)}`,
             )
-            .join("")}</tbody></table>`;
+            .join("")}</tbody></table></div>`;
 
         $("runs")
           .querySelectorAll("tr.run")
