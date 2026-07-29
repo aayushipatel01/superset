@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "runs": [
+    {
+      "run_id": "run-20260729T031246Z-382f0b",
+      "trigger_source": "manual",
+      "started_at": "2026-07-29T03:12:46Z",
+      "finished_at": "2026-07-29T04:55:00Z",
+      "status": "partial",
+      "findings_discovered": 5,
+      "issues_filed": 5,
+      "sessions_launched": 5,
+      "prs_opened": 5
+    }
+  ],
+  "sessions": [
+    {
+      "session_id": "devin-f98f53ac29044cdda567b80d93c3d6da",
+      "run_id": "run-20260729T031246Z-382f0b",
+      "issue_number": 3,
+      "status": "failed",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/12",
+      "scan_before": "superset-websocket$ npm audit --json | jq '{be: .vulnerabilities[\"brace-expansion\"].severity, meta: .metadata.vulnerabilities}'\n{\"be\":\"high\",\"meta\":{\"info\":0,\"low\":0,\"moderate\":0,\"high\":1,\"critical\":0,\"total\":1}}",
+      "scan_after": "superset-websocket$ npm audit --json | jq '{be: .vulnerabilities[\"brace-expansion\"], meta: .metadata.vulnerabilities}'\n{\"be\":null,\"meta\":{\"info\":0,\"low\":0,\"moderate\":0,\"high\":0,\"critical\":0,\"total\":0}}  (superset-frontend still flags brace-expansion: advisory range >=0 <5.0.8 leaves the patched 1.1.16/2.1.3 backports flagged; forcing >=5.0.8 breaks minimatch@3/@5)",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-ad7ac98cf26e49c1915d3fb935b688f2",
+      "run_id": "run-20260729T031246Z-382f0b",
+      "issue_number": 4,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/8",
+      "scan_before": "superset-frontend$ npm audit --json | jq '.vulnerabilities[\"shell-quote\"].severity'\n\"high\"  (GHSA-395f-4hp3-45gv, range <=1.8.4, via concurrently)",
+      "scan_after": "superset-frontend$ npm audit --json | jq '.vulnerabilities[\"shell-quote\"]'\nnull",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-117165324ae5432bbc1b402d52573627",
+      "run_id": "run-20260729T031246Z-382f0b",
+      "issue_number": 5,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/11",
+      "scan_before": "jaraco-context==6.0.1: GHSA-58pv-8j8x-9vj2\njaraco-context==6.0.1: PYSEC-2026-1469\n-- 34 vulns across 283 pinned packages",
+      "scan_after": "jaraco-context==6.1.2 (no OSV results)\n-- 32 vulns across 283 pinned packages",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-77a066ce517d4afa8bf08929003e0224",
+      "run_id": "run-20260729T031246Z-382f0b",
+      "issue_number": 6,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/9",
+      "scan_before": "mcp==1.24.0\n - GHSA-hvrp-rf83-w775 ['CVE-2026-52870']\n - GHSA-jpw9-pfvf-9f58 ['CVE-2026-52869']\n - GHSA-vj7q-gjh5-988w ['CVE-2026-59950']\nTOTAL: 6",
+      "scan_after": "mcp==1.28.1\nTOTAL: 0",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-ed0dac5274514724a6218b2d34d1ddea",
+      "run_id": "run-20260729T031246Z-382f0b",
+      "issue_number": 7,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/10",
+      "scan_before": "python-multipart==0.0.29 -> OSV: GHSA-5rvq-cxj2-64vf, GHSA-6jv3-5f52-599m, GHSA-v9pg-7xvm-68hf, GHSA-vffw-93wf-4j4q (+PYSEC aliases)",
+      "scan_after": "python-multipart==0.0.32 -> OSV query returns {}",
+      "ci_status": "passing"
+    }
+  ]
+}
