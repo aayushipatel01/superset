@@ -160,6 +160,10 @@ excel = ["xlrd>=2.0.2, <2.1"]
 excel-export = ["boto3"]
 fastmcp = [
     "fastmcp>=3.4.3,<4.0",
+    # python-multipart is pulled in transitively by fastmcp/mcp. Pinned to a
+    # lower bound that excludes GHSA-5rvq-cxj2-64vf (quadratic-time querystring
+    # parsing DoS) and the related parameter-smuggling advisories.
+    "python-multipart>=0.0.31",
     # tiktoken backs the response-size-guard token estimator. Without
     # it, the middleware falls back to a coarser character-based
     # heuristic that under-counts JSON-heavy MCP responses.
