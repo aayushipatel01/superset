@@ -114,6 +114,7 @@
     ]
   },
   "resolutions": {
+    "swagger-ui-react/immutable": "^5.1.9",
     "react-redux": "^9.2.0",
     "@reduxjs/toolkit": "^2.5.0",
     "baseline-browser-mapping": "^2.9.19",
