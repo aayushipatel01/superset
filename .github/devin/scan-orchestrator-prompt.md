@@ -108,7 +108,9 @@ Track `issues_filed`.
 
 For each newly filed issue, call the Devin API to create a child session:
 
-- Attach the `superset-remediate-one-finding` playbook.
+- Attach the remediation playbook using this ID:
+  playbook_id: playbook-81ac19e3558140d98460aac0dc4bbe0d
+  (Do not attempt to resolve this by name at runtime — use the literal ID above.)
 - Pass exactly that one finding plus its issue URL as input.
 - **Cap at 5 concurrent child sessions.** If there are more issues than slots, queue and
   launch the remainder as earlier sessions finish. Never exceed 5 in flight.
