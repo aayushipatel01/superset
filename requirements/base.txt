@@ -381,7 +381,7 @@ rpds-py==0.25.0
     #   referencing
 selenium==4.45.0
     # via apache-superset (pyproject.toml)
-setuptools==80.9.0
+setuptools==83.0.0
     # via -r requirements/base.in
 shillelagh==1.4.4
     # via apache-superset (pyproject.toml)
