@@ -63,7 +63,20 @@ jobs:
       - name: "Set up liccheck"
         run: |
           uv pip install --system liccheck
+          # liccheck imports pkg_resources, which setuptools 81+ no longer ships.
+          # Stage that module plus the vendored packages it imports on PYTHONPATH
+          # instead of downgrading setuptools in this environment: a downgrade
+          # would leave liccheck unable to resolve base.txt's own setuptools pin.
+          # The vendored dist-info directories are dropped so the staged copies
+          # stay out of the pkg_resources working set.
+          uv pip install --target /tmp/setuptools-legacy "setuptools<81"
+          mkdir -p /tmp/pkg-resources-shim
+          mv /tmp/setuptools-legacy/pkg_resources /tmp/pkg-resources-shim/
+          mv /tmp/setuptools-legacy/setuptools/_vendor/* /tmp/pkg-resources-shim/
+          rm -rf /tmp/pkg-resources-shim/*.dist-info
       - name: "Run liccheck"
+        env:
+          PYTHONPATH: /tmp/pkg-resources-shim
         run: |
           # run the checks
           liccheck -R output.txt
