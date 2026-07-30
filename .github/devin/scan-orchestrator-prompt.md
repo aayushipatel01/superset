@@ -94,7 +94,17 @@ gh issue list --repo aayushipatel01/superset --label devin-fix --state open \
 ```
 
 If an open issue already carries that exact `stable_finding_key`, skip the finding
-entirely (no issue, no session). Otherwise file exactly one issue:
+entirely (no issue, no session).
+
+Before skipping a finding as a duplicate, check whether its existing open
+issue already has an associated pull request referencing it (search for PRs
+whose body contains "Closes #<issue-number>", open or merged). If no such PR
+exists — meaning a prior run filed the issue but no remediation session ever
+successfully produced a fix — do NOT skip this finding. Instead, treat it as
+eligible for a new remediation session, and pass the EXISTING issue's URL and
+number to the child session rather than filing a new issue.
+
+Otherwise file exactly one issue:
 
 - **Title:** `[devin-fix] <category>: <package_or_file> — <short risk>`
 - **Label:** `devin-fix` (create the label if it does not exist)
