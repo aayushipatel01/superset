@@ -35,6 +35,7 @@
   },
   "overrides": {
     "@babel/core": "^7.29.6",
+    "d3-color": "^3.1.0",
     "cypress": {
       "form-data": "^2.3.4"
     },
