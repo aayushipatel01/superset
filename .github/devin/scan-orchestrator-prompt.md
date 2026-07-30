@@ -93,12 +93,22 @@ gh issue list --repo aayushipatel01/superset --label devin-fix --state open \
   --search "<stable_finding_key>" --json number,title,body
 ```
 
-If an open issue already carries that exact `stable_finding_key`, skip the finding
-entirely (no issue, no session). Otherwise file exactly one issue:
+If an open issue already carries that exact `stable_finding_key`, check whether
+it already has an associated pull request referencing it (search for PRs whose
+body contains "Closes #<issue-number>", open or merged):
 
-- **Title:** `[devin-fix] <category>: <package_or_file> — <short risk>`
-- **Label:** `devin-fix` (create the label if it does not exist)
-- **Body:** the `one_line_risk`, the `scan_command_that_surfaced_it`, the
+- If such a PR exists, skip the finding entirely (no issue, no session) — it's
+  already been handled or is currently being handled.
+- If no such PR exists (a prior run filed the issue but no remediation session
+  ever successfully produced a fix), do NOT skip it. Treat it as eligible for a
+  new remediation session, passing the EXISTING issue's URL and number to the
+  child session, rather than filing a new issue.
+
+If no open issue carries that `stable_finding_key` at all, file exactly one new issue:
+
+- Title: `[devin-fix] <category>: <package_or_file> — <short risk>`
+- Label: `devin-fix` (create the label if it does not exist)
+- Body: the `one_line_risk`, the `scan_command_that_surfaced_it`, the
   `acceptance_check` line in a fenced block, the suggested minimal fix, and a literal
   line `stable_finding_key: <key>`.
 
