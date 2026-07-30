@@ -35,6 +35,15 @@
       "prs_opened": 5
     },
     {
+      "run_id": "run-20260730T130110Z-1f00da",
+      "trigger_source": "scheduled",
+      "started_at": "2026-07-30T13:01:10Z",
+      "finished_at": "2026-07-30T15:07:00Z",
+      "status": "partial",
+      "findings_discovered": 5,
+      "issues_filed": 4,
+      "sessions_launched": 4,
+      "prs_opened": 4
       "run_id": "run-20260730T024737Z-4c0b2f",
       "trigger_source": "scheduled",
       "started_at": "2026-07-30T02:47:37Z",
@@ -198,6 +207,44 @@
       "ci_status": "passing"
     },
     {
+      "session_id": "devin-408048ea82514411afca65be891619b4",
+      "run_id": "run-20260730T130110Z-1f00da",
+      "issue_number": 49,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/54",
+      "scan_before": "OSV querybatch pip==25.1.1 -> {'results': [{'vulns': [GHSA-4xh5-x5gv-qwph, GHSA-58qw-9mgm-455v, GHSA-6vgw-5pg2-w6jp, GHSA-jp4c-xjxw-mgf9, GHSA-wf93-45jw-7689, PYSEC-2026-1795, PYSEC-2026-1796, PYSEC-2026-196, PYSEC-2026-2875, PYSEC-2026-2876]}]}",
+      "scan_after": "OSV querybatch pip==26.2 -> {'results': [{}]}",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-778fb30d2eae4c5ea8084fdeb0304016",
+      "run_id": "run-20260730T130110Z-1f00da",
+      "issue_number": 50,
+      "status": "failed",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/56",
+      "scan_before": "OSV querybatch pytest==7.4.4 -> {'results': [{'vulns': [{'id': 'GHSA-6w46-j5rx-g56g'}, {'id': 'PYSEC-2026-1845'}]}]}",
+      "scan_after": "OSV querybatch pytest==9.1.1 -> {'results': [{}]}",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-2f7263b84ccd4365a556dff3fc54921b",
+      "run_id": "run-20260730T130110Z-1f00da",
+      "issue_number": 51,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/55",
+      "scan_before": "pip-audit -r requirements/base.txt -> setuptools 80.9.0 PYSEC-2026-3447 fix 83.0.0 (4 vulns in 3 packages)",
+      "scan_after": "pip-audit -r requirements/base.txt -> Found 2 known vulnerabilities in 2 packages: flask 2.3.3 PYSEC-2026-2151, paramiko 3.5.1 PYSEC-2026-2858 (no setuptools finding)",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-e98510f4f2184941acfd7d104066cf11",
+      "run_id": "run-20260730T130110Z-1f00da",
+      "issue_number": 52,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/53",
+      "scan_before": "bandit B704 lines in superset/models/dashboard.py: [288] | markupsafe_markup_xss | MEDIUM/HIGH | 288: return Markup(f'<a href=\"{href}\">{title}</a>')",
+      "scan_after": "bandit B704 lines in superset/models/dashboard.py: []",
+      "ci_status": "passing"
       "session_id": "devin-49d9de1c90bf48ba8ef8e0c9d89230c2",
       "run_id": "run-20260730T024737Z-4c0b2f",
       "issue_number": 16,
