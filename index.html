@@ -405,6 +405,9 @@
         const rate = sessions.length
           ? Math.round((succeeded / sessions.length) * 100) + "%"
           : "—";
+        const ciPassing = sessions.filter(
+          (s) => s.ci_status === "passing",
+        ).length;
         const weekAgo = Date.now() - 7 * 864e5;
         const thisWeek = runs.filter((r) => {
           const t = new Date(r.started_at).getTime();
@@ -415,13 +418,18 @@
           ["Issues filed", sum("issues_filed"), ""],
           ["Sessions launched", sum("sessions_launched"), ""],
           ["PRs opened", sum("prs_opened"), ""],
-          ["Success rate", rate, `${succeeded} of ${sessions.length} sessions`],
+          [
+            "Success rate",
+            rate,
+            `${succeeded} of ${sessions.length} sessions`,
+            `CI passing: ${ciPassing} of ${sessions.length}`,
+          ],
           ["Runs this week", thisWeek, `${runs.length} total`],
         ];
         $("kpis").innerHTML = cards
           .map(
-            ([k, v, n]) =>
-              `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="n">${esc(n) || "&nbsp;"}</div></div>`,
+            ([k, v, n, n2]) =>
+              `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="n">${esc(n) || "&nbsp;"}</div>${n2 ? `<div class="n">${esc(n2)}</div>` : ""}</div>`,
           )
           .join("");
       }
