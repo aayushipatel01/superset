@@ -11,6 +11,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260729T130317Z-0bbee8",
+      "trigger_source": "scheduled",
+      "started_at": "2026-07-29T13:03:17Z",
+      "finished_at": "2026-07-29T14:13:33Z",
+      "status": "partial",
+      "findings_discovered": 5,
+      "issues_filed": 5,
+      "sessions_launched": 5,
+      "prs_opened": 4
     }
   ],
   "sessions": [
@@ -62,6 +73,56 @@
       "pr_url": "https://github.com/aayushipatel01/superset/pull/10",
       "scan_before": "python-multipart==0.0.29 -> OSV: GHSA-5rvq-cxj2-64vf, GHSA-6jv3-5f52-599m, GHSA-v9pg-7xvm-68hf, GHSA-vffw-93wf-4j4q (+PYSEC aliases)",
       "scan_after": "python-multipart==0.0.32 -> OSV query returns {}",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-074f290479fe4838966d6882760fbdb0",
+      "run_id": "run-20260729T130317Z-0bbee8",
+      "issue_number": 14,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/21",
+      "scan_before": "docs/yarn.lock: brace-expansion@^1.1.7 -> 1.1.15 | GHSA-3jxr-9vmj-r5cp ['CVE-2026-13149'] | sev=HIGH | vulnerable '< 1.1.16' matches 1.1.15 = FAIL (yarn audit itself unreachable: registry.yarnpkg.com blocked)",
+      "scan_after": "docs/yarn.lock: brace-expansion@^1.1.7 -> 1.1.16, outside the '< 1.1.16' vulnerable range; no vulnerable brace-expansion 1.x resolution remains",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-45a27e8cddb8437fa6808c0a9b33240b",
+      "run_id": "run-20260729T130317Z-0bbee8",
+      "issue_number": 15,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/19",
+      "scan_before": "docs/yarn.lock resolved brace-expansion versions: 1.1.15, 5.0.7 | GHSA-mh99-v99m-4gvg ['CVE-2026-14257'] | sev=HIGH | vulnerable '<= 5.0.7' matches 1.1.15, 5.0.7 = FAIL (registry.yarnpkg.com blocked, so yarn audit could not classify)",
+      "scan_after": "docs/yarn.lock resolved brace-expansion versions: 5.0.8; no resolution left inside the vulnerable range",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-2eb88ac0a1604a30a30940c1c9277e0f",
+      "run_id": "run-20260729T130317Z-0bbee8",
+      "issue_number": 16,
+      "status": "failed",
+      "pr_url": null,
+      "scan_before": "superset-frontend/cypress-base/package-lock.json: d3-color 1.4.1 | GHSA-36jr-mh4h-2g58 | sev=HIGH | vulnerable '< 3.1.0' matches 1.4.1 = FAIL (npm audit unreachable: registry.npmjs.org blocked)",
+      "scan_after": "Fix prepared in the working tree only (overrides d3-color ^3.1.0, lockfile entries at 3.1.0) but never committed: the pre-commit hooks cannot install their environments (files.pythonhosted.org blocked) and npm cannot reach the registry, so no PR was opened.",
+      "ci_status": "unknown"
+    },
+    {
+      "session_id": "devin-b02979c85f1a4097a89c6a6670dbfa11",
+      "run_id": "run-20260729T130317Z-0bbee8",
+      "issue_number": 17,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/20",
+      "scan_before": "docs/yarn.lock: immutable@^3.x.x -> 3.8.3 | GHSA-v56q-mh7h-f735 ['CVE-2026-59879'] | sev=HIGH | vulnerable '< 4.3.9' matches 3.8.3 = FAIL (registry.yarnpkg.com blocked)",
+      "scan_after": "docs/yarn.lock: immutable resolutions are 4.3.9 (swagger-ui-react) and 5.1.9 (sass); neither falls in a vulnerable range. Docs Testing CI ran yarn install --check-cache successfully, so the integrity hash is genuine.",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-70be1b521d184094b2d65c2040481549",
+      "run_id": "run-20260729T130317Z-0bbee8",
+      "issue_number": 18,
+      "status": "skipped_duplicate",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/20",
+      "scan_before": "docs/yarn.lock: immutable@^3.x.x -> 3.8.3 | GHSA-xvcm-6775-5m9r ['CVE-2026-59880'] | sev=HIGH | vulnerable '< 4.3.9' matches 3.8.3 = FAIL (registry.yarnpkg.com blocked)",
+      "scan_after": "Same package/path as sibling PR #20, which lands immutable 4.3.9 and clears this advisory too; this session closed its own PR #22 as a duplicate rather than landing a competing bump.",
       "ci_status": "passing"
     }
   ]
