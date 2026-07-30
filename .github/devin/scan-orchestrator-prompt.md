@@ -126,10 +126,16 @@ status of each PR.
 
 Read the committed metrics file (`metrics/remediation-metrics.json`), append **one**
 `runs` record and **one** `sessions` record per child session, and commit the update on
-its own branch with a PR titled `chore(metrics): record run <run_id>`. Never rewrite or
-delete existing records — append only. If two runs race, re-read, re-append, and retry
-rather than force-pushing. A no-op run from the floor rule still gets its `runs` record,
-with no `sessions` records.
+its own branch with a PR titled `chore(metrics): record run <run_id>`.
+
+When creating this PR (via git + gh, or via the GitHub REST API directly if
+git push is unavailable), explicitly set the base branch to
+"automation-metrics" — never rely on the repository's default branch for
+this PR.
+
+Never rewrite or delete existing records — append only. If two runs race, re-read,
+re-append, and retry rather than force-pushing. A no-op run from the floor rule still
+gets its `runs` record, with no `sessions` records.
 
 Set `finished_at`, and `status` = `success` if every child reported `success` or
 `skipped_duplicate`, `partial` if some failed, `failed` if the scan phase itself could not
