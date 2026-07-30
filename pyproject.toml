@@ -244,7 +244,9 @@ development = [
     "jaraco-context>=6.1.0",
     "openapi-spec-validator",
     "parameterized",
-    "pip",
+    # <26.1.2 has a path traversal via console_scripts entry point names
+    # (GHSA-wf93-45jw-7689) plus tar/ZIP confusion and symlink issues
+    "pip>=26.1.2",
     "polib",  # used by scripts/translations/ and their unit tests
     "pre-commit",
     "progress>=1.6.1,<2",
