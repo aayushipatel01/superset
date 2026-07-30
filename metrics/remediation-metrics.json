@@ -22,6 +22,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 4
+    },
+    {
+      "run_id": "run-20260730T005134Z-e9e544",
+      "trigger_source": "manual",
+      "started_at": "2026-07-30T00:51:34Z",
+      "finished_at": "2026-07-30T01:50:04Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 5,
+      "sessions_launched": 5,
+      "prs_opened": 5
     }
   ],
   "sessions": [
@@ -123,6 +134,56 @@
       "pr_url": "https://github.com/aayushipatel01/superset/pull/20",
       "scan_before": "docs/yarn.lock: immutable@^3.x.x -> 3.8.3 | GHSA-xvcm-6775-5m9r ['CVE-2026-59880'] | sev=HIGH | vulnerable '< 4.3.9' matches 3.8.3 = FAIL (registry.yarnpkg.com blocked)",
       "scan_after": "Same package/path as sibling PR #20, which lands immutable 4.3.9 and clears this advisory too; this session closed its own PR #22 as a duplicate rather than landing a competing bump.",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-31c103b43002422a85c59b42540181c7",
+      "run_id": "run-20260730T005134Z-e9e544",
+      "issue_number": 26,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/34",
+      "scan_before": "{\"type\":\"auditAdvisory\",\"data\":{\"resolution\":{\"id\":1123911,\"path\":\"swagger-ui-react>js-yaml\"},\"advisory\":{\"module_name\":\"js-yaml\",\"github_advisory_id\":\"GHSA-52cp-r559-cp3m\",\"severity\":\"high\",\"vulnerable_versions\":\">=4.0.0 <4.3.0\",\"patched_versions\":\">=4.3.0\",\"findings\":[{\"version\":\"4.2.0\",\"paths\":[\"swagger-ui-react>js-yaml\"]}]}}} | {\"type\":\"auditSummary\",\"data\":{\"vulnerabilities\":{\"info\":0,\"low\":0,\"moderate\":0,\"high\":1,\"critical\":0},\"totalDependencies\":2161}}",
+      "scan_after": "{\"type\":\"auditSummary\",\"data\":{\"vulnerabilities\":{\"info\":0,\"low\":0,\"moderate\":0,\"high\":0,\"critical\":0},\"totalDependencies\":2161}}",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-43e79f10ef444c4a907a1ea9c5c33be6",
+      "run_id": "run-20260730T005134Z-e9e544",
+      "issue_number": 27,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/33",
+      "scan_before": ">> Issue: [B324:hashlib] Use of weak MD5 hash for security. Severity: High Confidence: High | Location: superset/config.py:3131:11 | 3131 return hashlib.md5(source).hexdigest()[:12]  # noqa: S324",
+      "scan_after": "config.py:3131 B324 occurrences: 0 (acceptance check passed: no B324 in superset/config.py)",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-760d60e88014416c86ff3bd9ea06231c",
+      "run_id": "run-20260730T005134Z-e9e544",
+      "issue_number": 28,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/35",
+      "scan_before": ">> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False | Severity: High Confidence: High | Location: superset/key_value/utils.py:98 | 98 md5_obj = md5()  # noqa: S324",
+      "scan_after": "bandit -f json superset/key_value/utils.py -> B324 count: 0, SEVERITY.HIGH: 0",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-33b35130b58144babddf77b4e6fc4092",
+      "run_id": "run-20260730T005134Z-e9e544",
+      "issue_number": 29,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/31",
+      "scan_before": ">> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False | Severity: High Confidence: High | Location: superset/migrations/versions/2024-05-10_18-02_f84fde59123a_update_charts_with_old_time_comparison.py:178:28 | 178 random_string = md5(comparator_str.encode(\"utf-8\")).hexdigest()  # noqa: S324 | Run metrics: Low: 221 Medium: 41 High: 6",
+      "scan_after": "bandit -r superset/ | grep f84fde59123a -> (no output) | Run metrics: Low: 221 Medium: 41 High: 5",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-b815fa0aaa504504a9933e1cd9a48d91",
+      "run_id": "run-20260730T005134Z-e9e544",
+      "issue_number": 30,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/32",
+      "scan_before": ">> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False | Severity: High Confidence: High | CWE: CWE-327 | Location: superset/utils/hashing.py:34:24 | 34 \"md5\": lambda data: hashlib.md5(data).hexdigest(),  # noqa: S324 | Run metrics: Low: 221 Medium: 41 High: 6",
+      "scan_after": "bandit -r superset/ | grep 'utils/hashing.py' -> (no matches) | Run metrics: Low: 221 Medium: 41 High: 5",
       "ci_status": "passing"
     }
   ]
