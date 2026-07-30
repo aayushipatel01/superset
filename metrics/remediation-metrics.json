@@ -44,6 +44,15 @@
       "issues_filed": 4,
       "sessions_launched": 4,
       "prs_opened": 4
+      "run_id": "run-20260730T024737Z-4c0b2f",
+      "trigger_source": "scheduled",
+      "started_at": "2026-07-30T02:47:37Z",
+      "finished_at": "2026-07-30T03:18:37Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 4,
+      "sessions_launched": 5,
+      "prs_opened": 5
     }
   ],
   "sessions": [
@@ -236,6 +245,54 @@
       "scan_before": "bandit B704 lines in superset/models/dashboard.py: [288] | markupsafe_markup_xss | MEDIUM/HIGH | 288: return Markup(f'<a href=\"{href}\">{title}</a>')",
       "scan_after": "bandit B704 lines in superset/models/dashboard.py: []",
       "ci_status": "passing"
+      "session_id": "devin-49d9de1c90bf48ba8ef8e0c9d89230c2",
+      "run_id": "run-20260730T024737Z-4c0b2f",
+      "issue_number": 16,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/43",
+      "scan_before": "d3-color  <3.1.0\nSeverity: high\nd3-color vulnerable to ReDoS - https://github.com/advisories/GHSA-36jr-mh4h-2g58\nnode_modules/d3-color\n  d3-interpolate  0.1.3 - 2.0.1\n    @superset-ui/core  >=0.15.0\n    d3-scale  0.1.5 - 3.3.0\n\nacceptance check => FAIL (GHSA-36jr-mh4h-2g58 present); d3-color resolved 1.4.1",
+      "scan_after": "(no d3-color / GHSA-36jr-mh4h-2g58 entries in npm audit output)\n\nacceptance check => PASS; d3-color resolved 3.1.0",
+      "ci_status": "pending"
+    },
+    {
+      "session_id": "devin-5184ccd28bbd43ccb6e78095cc1f931d",
+      "run_id": "run-20260730T024737Z-4c0b2f",
+      "issue_number": 39,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/44",
+      "scan_before": "(cd superset-frontend/cypress-base && npm audit --json)\n\"js-yaml\": {\n  \"name\": \"js-yaml\", \"severity\": \"high\", \"isDirect\": false,\n  \"via\": [{ \"source\": 1123911, \"name\": \"js-yaml\",\n    \"title\": \"js-yaml: YAML merge-key chains can force quadratic CPU consumption\",\n    \"url\": \"https://github.com/advisories/GHSA-52cp-r559-cp3m\",\n    \"severity\": \"high\", \"cvss\": {\"score\": 7.5},\n    \"range\": \">=4.0.0 <4.3.0\" }],\n  \"effects\": [\"@cypress/code-coverage\"], \"range\": \"4.0.0 - 4.2.0\",\n  \"nodes\": [\"node_modules/js-yaml\"]\n}\n\"metadata\": {\"vulnerabilities\": {\"high\": 14, \"total\": 14}}\nacceptance check -> FAIL",
+      "scan_after": "(cd superset-frontend/cypress-base && npm audit --json)\nvulnerable packages: @cypress/code-coverage, @superset-ui/core, brace-expansion, d3-color, d3-interpolate, d3-scale, glob, istanbul-lib-processinfo, minimatch, nyc, rimraf, spawn-wrap, test-exclude\n(no js-yaml entry; grep GHSA-52cp-r559-cp3m returns 0 matches)\n\"metadata\": {\"vulnerabilities\": {\"high\": 13, \"total\": 13}}\nacceptance check -> PASS",
+      "ci_status": "pending"
+    },
+    {
+      "session_id": "devin-0b9cc0c54d1a4b388a2e460fae6aa528",
+      "run_id": "run-20260730T024737Z-4c0b2f",
+      "issue_number": 40,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/45",
+      "scan_before": ">> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False\n   Severity: High   Confidence: High\n   Location: ./superset/utils/public_interfaces.py:43:13\n42\tdef compute_func_hash(function: Callable[..., Any]) -> str:\n43\t    hashed = md5()  # noqa: S324\n--\n>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False\n   Severity: High   Confidence: High\n   Location: ./superset/utils/public_interfaces.py:49:13\n48\tdef compute_class_hash(class_: Callable[..., Any]) -> str:\n49\t    hashed = md5()  # noqa: S324\n---\nFAIL",
+      "scan_after": "Run metrics:\n\tTotal issues (by severity):\n\t\tUndefined: 0\n\t\tLow: 0\n\t\tMedium: 0\n\t\tHigh: 0\nFiles skipped (0):\nPASS",
+      "ci_status": "pending"
+    },
+    {
+      "session_id": "devin-91b3511cffc5460a829498071392a0c3",
+      "run_id": "run-20260730T024737Z-4c0b2f",
+      "issue_number": 41,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/47",
+      "scan_before": "$ (cd superset-frontend/cypress-base && npm audit --json)\n{\n  \"brace-expansion\": {\n    \"severity\": \"high\",\n    \"via\": [{\"title\": \"brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash\", \"url\": \"https://github.com/advisories/GHSA-mh99-v99m-4gvg\", \"severity\": \"high\", \"range\": \"<=5.0.7\"}],\n    \"range\": \"<=5.0.7\",\n    \"nodes\": [\"node_modules/brace-expansion\", \"node_modules/glob/node_modules/brace-expansion\", \"node_modules/test-exclude/node_modules/brace-expansion\"]\n  }\n}\nmetadata.vulnerabilities: {\"info\": 0, \"low\": 0, \"moderate\": 0, \"high\": 14, \"critical\": 0, \"total\": 14}\nacceptance check => FAIL (GHSA-mh99-v99m-4gvg present)",
+      "scan_after": "$ (cd superset-frontend/cypress-base && npm audit --json)\nbrace-expansion in vulnerabilities: False\nGHSA-mh99-v99m-4gvg present: False\nmetadata.vulnerabilities: {\"info\": 0, \"low\": 0, \"moderate\": 1, \"high\": 5, \"critical\": 0, \"total\": 6}\nacceptance check => PASS (GHSA-mh99-v99m-4gvg absent)",
+      "ci_status": "pending"
+    },
+    {
+      "session_id": "devin-1d1b1da7b5864c8d95e66568dc976739",
+      "run_id": "run-20260730T024737Z-4c0b2f",
+      "issue_number": 42,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/46",
+      "scan_before": "FAIL\n\n\"js-yaml\": {\n  \"name\": \"js-yaml\", \"severity\": \"high\", \"isDirect\": false,\n  \"via\": [\n    {\"source\": 1121860, \"name\": \"js-yaml\", \"title\": \"JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases\", \"url\": \"https://github.com/advisories/GHSA-h67p-54hq-rp68\", \"severity\": \"moderate\", \"cwe\": [\"CWE-407\"], \"cvss\": {\"score\": 5.3}, \"range\": \">=4.0.0 <=4.1.1\"},\n    {\"source\": 1123911, \"name\": \"js-yaml\", \"title\": \"js-yaml: YAML merge-key chains can force quadratic CPU consumption\", \"url\": \"https://github.com/advisories/GHSA-52cp-r559-cp3m\", \"severity\": \"high\", \"range\": \">=4.0.0 <4.3.0\"}\n  ],\n  \"effects\": [\"@cypress/code-coverage\"], \"range\": \"4.0.0 - 4.2.0\", \"nodes\": [\"node_modules/js-yaml\"]\n}\n\n\"metadata.vulnerabilities\": {\"info\": 0, \"low\": 0, \"moderate\": 0, \"high\": 14, \"critical\": 0, \"total\": 14}",
+      "scan_after": "PASS\n\n$ grep -c GHSA-h67p-54hq-rp68 audit_after.json\n0\n\n\"vulnerabilities\" keys: [\"@cypress/code-coverage\", \"@superset-ui/core\", \"brace-expansion\", \"d3-color\", \"d3-interpolate\", \"d3-scale\", \"glob\", \"istanbul-lib-processinfo\", \"minimatch\", \"nyc\", \"rimraf\", \"spawn-wrap\", \"test-exclude\"]  # js-yaml absent\n\n\"metadata.vulnerabilities\": {\"info\": 0, \"low\": 0, \"moderate\": 0, \"high\": 13, \"critical\": 0, \"total\": 13}\n\nLockfile: node_modules/@cypress/code-coverage/node_modules/js-yaml -> 4.3.0",
+      "ci_status": "pending"
     }
   ]
 }
