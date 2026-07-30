@@ -44,6 +44,8 @@
       "issues_filed": 4,
       "sessions_launched": 4,
       "prs_opened": 4
+    },
+    {
       "run_id": "run-20260730T024737Z-4c0b2f",
       "trigger_source": "scheduled",
       "started_at": "2026-07-30T02:47:37Z",
@@ -245,6 +247,8 @@
       "scan_before": "bandit B704 lines in superset/models/dashboard.py: [288] | markupsafe_markup_xss | MEDIUM/HIGH | 288: return Markup(f'<a href=\"{href}\">{title}</a>')",
       "scan_after": "bandit B704 lines in superset/models/dashboard.py: []",
       "ci_status": "passing"
+    },
+    {
       "session_id": "devin-49d9de1c90bf48ba8ef8e0c9d89230c2",
       "run_id": "run-20260730T024737Z-4c0b2f",
       "issue_number": 16,
