@@ -160,6 +160,17 @@ excel = ["xlrd>=2.0.2, <2.1"]
 excel-export = ["boto3"]
 fastmcp = [
     "fastmcp>=3.4.3,<4.0",
+    # Security: GHSA-jpw9-pfvf-9f58 / GHSA-hvrp-rf83-w775 / GHSA-vj7q-gjh5-988w
+    # (CVE-2026-52869 / CVE-2026-52870 / CVE-2026-59950) - the MCP Python SDK
+    # served HTTP transport session requests without verifying session ownership
+    # and exposed experimental task handlers to any client; fixed in 1.28.1.
+    # Upper bound keeps us on the vetted 1.28.x line (newer releases are held
+    # to the supply-chain cooldown before being pulled in).
+    "mcp>=1.28.1,<1.29.0",
+    # python-multipart is pulled in transitively by fastmcp/mcp. Pinned to a
+    # lower bound that excludes GHSA-5rvq-cxj2-64vf (quadratic-time querystring
+    # parsing DoS) and the related parameter-smuggling advisories.
+    "python-multipart>=0.0.31",
     # tiktoken backs the response-size-guard token estimator. Without
     # it, the middleware falls back to a coarser character-based
     # heuristic that under-counts JSON-heavy MCP responses.
@@ -228,6 +239,9 @@ development = [
     "flask-testing",
     "freezegun",
     "grpcio>=1.82.1",
+    # pulled in transitively by keyring; <6.1.0 has a path traversal in
+    # jaraco.context.tarball() (GHSA-58pv-8j8x-9vj2)
+    "jaraco-context>=6.1.0",
     "openapi-spec-validator",
     "parameterized",
     "pip",
