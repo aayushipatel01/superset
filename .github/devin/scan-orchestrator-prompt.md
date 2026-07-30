@@ -108,6 +108,8 @@ Track `issues_filed`.
 
 For each newly filed issue, call the Devin API to create a child session:
 
+- Use the v3 API exactly: https://api.devin.ai/v3/organizations/{org_id}/sessions.
+  Do not use any v1 endpoint — the service-user token is not valid there.
 - Attach the remediation playbook using this ID:
   playbook_id: playbook-81ac19e3558140d98460aac0dc4bbe0d
   (Do not attempt to resolve this by name at runtime — use the literal ID above.)
