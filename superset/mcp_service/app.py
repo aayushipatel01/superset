@@ -535,7 +535,7 @@ Input format:
   1. Explain that they may not have access to the requested resources
   2. Suggest they ask a workspace admin to grant them access or share content with them
   3. Offer to help with what they CAN do (e.g., viewing dashboards they have access to)
-{_accessible_menus_bullet}{_unsure_guidance}{_connect_guidance}"""
+{_accessible_menus_bullet}{_unsure_guidance}{_connect_guidance}"""  # nosec B608 - natural-language LLM instructions, not a SQL query
     if not _disabled:
         return instructions
 
