@@ -391,6 +391,9 @@
     "@great-expectations/jsonforms-antd-renderers": {
       "antd": "$antd"
     },
+    "@storybook/react-docgen-typescript-plugin": {
+      "flat-cache": "^4.0.1"
+    },
     "core-js": "^3.38.1",
     "dompurify": "^3.4.11",
     "esbuild": "^0.28.1",
