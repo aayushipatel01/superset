@@ -66,6 +66,17 @@
       "issues_filed": 4,
       "sessions_launched": 4,
       "prs_opened": 4
+    },
+    {
+      "run_id": "run-20260731T024013Z-1a0675",
+      "trigger_source": "manual",
+      "started_at": "2026-07-31T02:40:13Z",
+      "finished_at": "2026-07-31T04:25:00Z",
+      "status": "partial",
+      "findings_discovered": 5,
+      "issues_filed": 5,
+      "sessions_launched": 5,
+      "prs_opened": 5
     }
   ],
   "sessions": [
@@ -347,6 +358,56 @@
       "pr_url": "https://github.com/aayushipatel01/superset/pull/62",
       "scan_before": ">> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction. | Severity: Medium Confidence: Low | Location: superset/mcp_service/app.py:94",
       "scan_after": "nosec encountered (B608) on superset/mcp_service/app.py; 1 issue skipped as disabled (Run metrics: Low: 221 Medium: 39 High: 0)",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-352cb19f0ad444218164bf9616bac941",
+      "run_id": "run-20260731T024013Z-1a0675",
+      "issue_number": 67,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/72",
+      "scan_before": "npm audit (superset-frontend): \"@storybook/preset-react-webpack\" severity=high range=\"*\" fixAvailable=true",
+      "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"@storybook/preset-react-webpack\"] -> null (entry absent)",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-fac169815fa24c1a9a2fc4ac1d7001ea",
+      "run_id": "run-20260731T024013Z-1a0675",
+      "issue_number": 68,
+      "status": "running",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/73",
+      "scan_before": "npm audit (superset-frontend): \"@storybook/react-docgen-typescript-plugin\" severity=high range=\"*\" fixAvailable=true",
+      "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"@storybook/react-docgen-typescript-plugin\"] -> null (entry absent)",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-52f52cdaa2124a279d958adfe993b8ed",
+      "run_id": "run-20260731T024013Z-1a0675",
+      "issue_number": 69,
+      "status": "running",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/74",
+      "scan_before": "npm audit (superset-frontend): \"filelist\" severity=high range=\"0.0.5 - 1.0.6\" fixAvailable=true",
+      "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"filelist\"] -> null (entry absent)",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-242da8787d25485f869ba89d267f73b8",
+      "run_id": "run-20260731T024013Z-1a0675",
+      "issue_number": 70,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/76",
+      "scan_before": "npm audit (superset-frontend): \"flat-cache\" severity=high range=\"1.3.4 - 4.0.0\" fixAvailable=true",
+      "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"flat-cache\"] -> null (entry absent)",
+      "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-ae8243c871c14c28b4f26aae8214c1eb",
+      "run_id": "run-20260731T024013Z-1a0675",
+      "issue_number": 71,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/75",
+      "scan_before": "npm audit (superset-frontend): \"jake\" severity=high range=\"8.0.14 - 10.9.4\" fixAvailable=true",
+      "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"jake\"] -> null (entry absent)",
       "ci_status": "passing"
     }
   ]
