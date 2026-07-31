@@ -168,7 +168,10 @@ class TestOpenSqlLabWithContext:
             with (
                 patch(
                     "superset.daos.database.DatabaseDAO.find_by_id",
-                    return_value=Mock(database_name="examples"),
+                    return_value=Mock(
+                        database_name="examples",
+                        quote_identifier=lambda value: f'"{value}"',
+                    ),
                 ),
                 patch.object(
                     mod.event_logger, "log_context", return_value=nullcontext()
@@ -186,7 +189,7 @@ class TestOpenSqlLabWithContext:
                 "-- Context: Working with dataset 'orders'\n"
                 "-- Database: examples\n"
                 "-- Schema: public\n"
-                "\nSELECT * FROM public.orders LIMIT 100;"
+                '\nSELECT * FROM "public"."orders" LIMIT 100;'
             )
 
             assert response.database_id == 12
@@ -211,7 +214,10 @@ class TestOpenSqlLabWithContext:
             with (
                 patch(
                     "superset.daos.database.DatabaseDAO.find_by_id",
-                    return_value=Mock(database_name="examples"),
+                    return_value=Mock(
+                        database_name="examples",
+                        quote_identifier=lambda value: f'"{value}"',
+                    ),
                 ),
                 patch.object(
                     mod.event_logger, "log_context", return_value=nullcontext()
@@ -228,7 +234,7 @@ class TestOpenSqlLabWithContext:
             expected_sql = (
                 "-- Context: Working with dataset 'orders'\n"
                 "-- Database: examples\n"
-                "\nSELECT * FROM orders LIMIT 100;"
+                '\nSELECT * FROM "orders" LIMIT 100;'
             )
 
             assert response.schema_name is None
