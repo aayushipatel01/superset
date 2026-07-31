@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260731T210104Z-db3dae",
+      "trigger_source": "scheduled",
+      "started_at": "2026-07-31T21:01:04Z",
+      "finished_at": "2026-07-31T22:44:10Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 4,
+      "sessions_launched": 4,
+      "prs_opened": 4
     }
   ],
   "sessions": [
@@ -409,6 +420,46 @@
       "scan_before": "npm audit (superset-frontend): \"jake\" severity=high range=\"8.0.14 - 10.9.4\" fixAvailable=true",
       "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"jake\"] -> null (entry absent)",
       "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-713d2aa9bc3048e1bd998634298aadf2",
+      "run_id": "run-20260731T210104Z-db3dae",
+      "issue_number": 78,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/82",
+      "scan_before": "npm audit (superset-frontend, superset-embedded-sdk): brace-expansion <1.1.17 | GHSA-mh99-v99m-4gvg | sev=high | fixAvailable=true",
+      "scan_after": "npm audit (superset-frontend, superset-embedded-sdk): brace-expansion resolved to 1.1.18, no advisory reported",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-aa2beb9284734bc28422895c45c5a1d9",
+      "run_id": "run-20260731T210104Z-db3dae",
+      "issue_number": 79,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/85",
+      "scan_before": "npm audit (superset-frontend): nx 17.0.4 - 22.7.1 | GHSA-g2r8-wvmj-jf5w | sev=moderate | metadata.vulnerabilities={moderate:1,high:1,critical:1,total:3}",
+      "scan_after": "npm audit (superset-frontend): nx overridden to ^22.7.8, no advisory reported | metadata.vulnerabilities={moderate:0,high:1,critical:1,total:2}",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-5f5c48e4d71f44299f5e142df9054b23",
+      "run_id": "run-20260731T210104Z-db3dae",
+      "issue_number": 80,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/83",
+      "scan_before": "bandit: superset/mcp_service/dataset/tool/create_virtual_dataset.py:214 B608 MEDIUM possible SQL injection | totals HIGH:0 MEDIUM:36 LOW:221",
+      "scan_after": "bandit: no B608 result for create_virtual_dataset.py (confirmed false positive, nosec B608) | totals HIGH:0 MEDIUM:35 LOW:221",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-fe367357941543a7ac4580ef9b08f090",
+      "run_id": "run-20260731T210104Z-db3dae",
+      "issue_number": 81,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/84",
+      "scan_before": "bandit: superset/mcp_service/sql_lab/tool/open_sql_lab_with_context.py:153:37 B608 Medium/Low possible SQL injection | Run metrics: Medium: 1, High: 0",
+      "scan_after": "bandit: No issues identified for open_sql_lab_with_context.py (identifiers quoted via database.quote_identifier) | Run metrics: Medium: 0, High: 0",
+      "ci_status": "failing"
     }
   ]
 }
