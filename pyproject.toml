@@ -254,7 +254,7 @@ development = [
     "pyfakefs",
     "pyinstrument>=5.1.2,<6",
     "pylint",
-    "pytest<10.0.0", # cap below the next major until validated; the earlier <8 pin (current_app proxy timing) no longer reproduces
+    "pytest>=9.0.3,<10.0.0", # cap below the next major until validated; the earlier <8 pin (current_app proxy timing) no longer reproduces
     "pytest-asyncio",
     "pytest-cov",
     "pytest-mock",

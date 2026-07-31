@@ -716,6 +716,9 @@ def _patch_bq_fetch_deps(
 ) -> tuple[mock.MagicMock, mock.MagicMock]:
     """Helper to patch Flask g and current_app for BigQuery fetch_data tests."""
     flask_g = mocker.patch("superset.db_engine_specs.bigquery.g")
+    mocker.patch(
+        "superset.db_engine_specs.bigquery.has_request_context", return_value=True
+    )
     app = mocker.patch("superset.db_engine_specs.bigquery.current_app")
     # Make current_app truthy and .config.get() return a plain int
     app.__bool__ = mock.Mock(return_value=True)
