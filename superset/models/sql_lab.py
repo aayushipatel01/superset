@@ -551,13 +551,15 @@ class SavedQuery(
 
     @property
     def pop_tab_link(self) -> Markup:
+        # `id` is an integer primary key rather than user-controlled input;
+        # Markup.format escapes the interpolated value as defence-in-depth.
         return Markup(
-            f"""
-            <a href="/sqllab?savedQueryId={self.id}">
+            """
+            <a href="/sqllab?savedQueryId={id}">
                 <i class="fa fa-link"></i>
             </a>
         """
-        )
+        ).format(id=self.id)
 
     @property
     def user_email(self) -> str:
