@@ -435,6 +435,9 @@
     },
     "lerna": {
       "js-yaml": "^4.3.0"
+    },
+    "@storybook/react-docgen-typescript-plugin": {
+      "flat-cache": "^4.0.1"
     }
   },
   "readme": "ERROR: No README data found!",
