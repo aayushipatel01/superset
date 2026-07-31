@@ -1,0 +1,560 @@
+<!doctype html>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remediation automation dashboard</title>
+    <style>
+      :root {
+        --bg: #f6f7f9;
+        --fg: #1b1f23;
+        --muted: #6a737d;
+        --line: #d8dee4;
+        --card: #fff;
+        --ok: #1a7f37;
+        --warn: #9a6700;
+        --bad: #b42318;
+        --info: #0b62d0;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 24px;
+        background: var(--bg);
+        color: var(--fg);
+        font:
+          14px/1.45 -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Helvetica,
+          Arial,
+          sans-serif;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 15px;
+        margin: 28px 0 10px;
+      }
+      .sub {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 20px;
+      }
+      .sub code {
+        background: #eaecef;
+        padding: 1px 4px;
+        border-radius: 3px;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 12px 14px;
+      }
+      .card .v {
+        font-size: 26px;
+        font-weight: 600;
+      }
+      .card .k {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .card .n {
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .tablewrap {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--muted);
+        background: #fafbfc;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr.run {
+        cursor: pointer;
+      }
+      tr.run:hover {
+        background: #f2f6fb;
+      }
+      td.num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      th.num {
+        text-align: right;
+      }
+      .badge {
+        display: inline-block;
+        padding: 1px 7px;
+        border-radius: 999px;
+        font-size: 11px;
+        border: 1px solid var(--line);
+        background: #eef1f4;
+        white-space: nowrap;
+      }
+      .badge.scheduled {
+        background: #e7f0fd;
+        border-color: #b6d2f7;
+        color: var(--info);
+      }
+      .badge.manual {
+        background: #f3ebfd;
+        border-color: #d9c6f6;
+        color: #6b32c9;
+      }
+      .badge.success,
+      .badge.passing {
+        background: #e6f4ea;
+        border-color: #a9d6b6;
+        color: var(--ok);
+      }
+      .badge.failed,
+      .badge.failing {
+        background: #fdeceb;
+        border-color: #f2b6b1;
+        color: var(--bad);
+      }
+      .badge.partial,
+      .badge.pending,
+      .badge.running,
+      .badge.not_reproducible {
+        background: #fdf4e3;
+        border-color: #edd8a6;
+        color: var(--warn);
+      }
+      .filters {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        margin: 0 0 10px;
+      }
+      button.f {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 999px;
+        padding: 4px 12px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      button.f[aria-pressed="true"] {
+        background: var(--fg);
+        color: #fff;
+        border-color: var(--fg);
+      }
+      .caret {
+        display: inline-block;
+        width: 10px;
+        color: var(--muted);
+      }
+      .drill {
+        background: #fbfcfd;
+        padding: 12px 14px 16px;
+      }
+      .sess {
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--card);
+        padding: 10px 12px;
+        margin-bottom: 10px;
+      }
+      .sess:last-child {
+        margin-bottom: 0;
+      }
+      .sess .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .sess .meta strong {
+        color: var(--fg);
+      }
+      .scans {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      @media (max-width: 720px) {
+        .scans {
+          grid-template-columns: 1fr;
+        }
+      }
+      .scan h4 {
+        margin: 0 0 4px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .scan pre {
+        margin: 0;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid var(--line);
+        background: #f6f8fa;
+        font:
+          12px/1.5 ui-monospace,
+          SFMono-Regular,
+          Menlo,
+          Consolas,
+          monospace;
+        white-space: pre-wrap;
+        word-break: break-word;
+        max-height: 260px;
+        overflow: auto;
+      }
+      .scan.before pre {
+        background: #fdf1f0;
+        border-color: #f2c9c5;
+      }
+      .scan.after pre {
+        background: #eef8f1;
+        border-color: #bbdcc6;
+      }
+      .funnel {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 14px;
+      }
+      .fstep {
+        display: grid;
+        grid-template-columns: 90px 1fr 70px;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 6px;
+        font-size: 12px;
+      }
+      .fbar {
+        height: 16px;
+        border-radius: 3px;
+        background: var(--info);
+        min-width: 2px;
+      }
+      .empty {
+        color: var(--muted);
+        font-style: italic;
+        padding: 14px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+      a {
+        color: var(--info);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Scan &amp; remediate — automation dashboard</h1>
+    <div class="sub">
+      Read-only view of
+      <code>metrics/remediation-metrics.json</code> on the
+      <code>automation-metrics</code> branch.
+      <span id="source"></span>
+    </div>
+
+    <div id="error" style="display: none" class="empty"></div>
+
+    <div class="cards" id="kpis"></div>
+
+    <h2>Runs</h2>
+    <div class="filters">
+      <span style="font-size: 12px; color: var(--muted)">Trigger:</span>
+      <button class="f" data-trigger="all" aria-pressed="true">All</button>
+      <button class="f" data-trigger="scheduled" aria-pressed="false">
+        Scheduled
+      </button>
+      <button class="f" data-trigger="manual" aria-pressed="false">
+        Manual
+      </button>
+    </div>
+    <div id="runs"></div>
+
+    <h2>Funnel</h2>
+    <div id="funnel"></div>
+
+    <script>
+      const REPO = "aayushipatel01/superset";
+      const BRANCH = "automation-metrics";
+      const PATH = "metrics/remediation-metrics.json";
+      const RAW = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${PATH}`;
+
+      const $ = (id) => document.getElementById(id);
+      const esc = (s) =>
+        String(s ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const badge = (v) =>
+        `<span class="badge ${esc(v)}">${esc(v ?? "unknown")}</span>`;
+
+      function fmtTime(iso) {
+        if (!iso) return "—";
+        const d = new Date(iso);
+        return isNaN(d)
+          ? esc(iso)
+          : d.toISOString().replace("T", " ").slice(0, 16) + "Z";
+      }
+
+      function fmtDuration(a, b) {
+        if (!a || !b) return "in progress";
+        const ms = new Date(b) - new Date(a);
+        if (isNaN(ms) || ms < 0) return "—";
+        const s = Math.round(ms / 1000);
+        if (s < 60) return `${s}s`;
+        const m = Math.floor(s / 60);
+        return m < 60
+          ? `${m}m ${s % 60}s`
+          : `${Math.floor(m / 60)}h ${m % 60}m`;
+      }
+
+      const sessionUrl = (id) =>
+        `https://app.devin.ai/sessions/${encodeURIComponent(String(id).replace(/^devin-/, ""))}`;
+      const issueUrl = (n) =>
+        `https://github.com/${REPO}/issues/${encodeURIComponent(n)}`;
+      const prLink = (url) => {
+        const label = esc(String(url).replace(/^https:\/\/github\.com\//, ""));
+        return /^https:\/\/github\.com\//.test(url)
+          ? `<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>`
+          : label;
+      };
+
+      async function load() {
+        const override = new URLSearchParams(location.search).get("data");
+        const candidates = override
+          ? [override]
+          : [PATH, `./${PATH.split("/").pop()}`, RAW];
+        const errors = [];
+        for (const url of candidates) {
+          try {
+            const res = await fetch(url, { cache: "no-store" });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            $("source").textContent = `Source: ${url}`;
+            return data;
+          } catch (e) {
+            errors.push(`${url}: ${e.message}`);
+          }
+        }
+        throw new Error(errors.join(" | "));
+      }
+
+      function kpis(runs, sessions) {
+        const sum = (k) => runs.reduce((a, r) => a + (Number(r[k]) || 0), 0);
+        const succeeded = sessions.filter((s) => s.status === "success").length;
+        const rate = sessions.length
+          ? Math.round((succeeded / sessions.length) * 100) + "%"
+          : "—";
+        const ciPassing = sessions.filter(
+          (s) => s.ci_status === "passing",
+        ).length;
+        const weekAgo = Date.now() - 7 * 864e5;
+        const thisWeek = runs.filter((r) => {
+          const t = new Date(r.started_at).getTime();
+          return !isNaN(t) && t >= weekAgo;
+        }).length;
+        const cards = [
+          ["Findings discovered", sum("findings_discovered"), ""],
+          ["Issues filed", sum("issues_filed"), ""],
+          ["Sessions launched", sum("sessions_launched"), ""],
+          ["PRs opened", sum("prs_opened"), ""],
+          [
+            "Success rate",
+            rate,
+            `${succeeded} of ${sessions.length} sessions`,
+            `CI passing: ${ciPassing} of ${sessions.length}`,
+          ],
+          ["Runs this week", thisWeek, `${runs.length} total`],
+        ];
+        $("kpis").innerHTML = cards
+          .map(
+            ([k, v, n, n2]) =>
+              `<div class="card"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="n">${esc(n) || "&nbsp;"}</div>${n2 ? `<div class="n">${esc(n2)}</div>` : ""}</div>`,
+          )
+          .join("");
+      }
+
+      function drilldown(runSessions) {
+        if (!runSessions.length) {
+          return `<tr><td class="drill" colspan="10"><div class="empty">No remediation sessions for this run.</div></td></tr>`;
+        }
+        const body = runSessions
+          .map(
+            (s) => `
+          <div class="sess">
+            <div class="meta">
+              <span><strong>Issue <a href="${esc(issueUrl(s.issue_number))}" target="_blank" rel="noopener">#${esc(s.issue_number)}</a></strong></span>
+              <span>Session <a href="${esc(sessionUrl(s.session_id))}" target="_blank" rel="noopener">${esc(s.session_id)}</a></span>
+              <span>Status ${badge(s.status)}</span>
+              <span>PR ${s.pr_url ? prLink(s.pr_url) : "—"}</span>
+              <span>CI ${badge(s.ci_status)}</span>
+            </div>
+            <div class="scans">
+              <div class="scan before"><h4>Scan before</h4><pre>${esc(s.scan_before) || "—"}</pre></div>
+              <div class="scan after"><h4>Scan after</h4><pre>${esc(s.scan_after) || "—"}</pre></div>
+            </div>
+          </div>`,
+          )
+          .join("");
+        return `<tr><td class="drill" colspan="10">${body}</td></tr>`;
+      }
+
+      function renderRuns(runs, sessions, trigger) {
+        const rows = runs
+          .filter((r) => trigger === "all" || r.trigger_source === trigger)
+          .slice()
+          .sort((a, b) => new Date(b.started_at) - new Date(a.started_at));
+        if (!rows.length) {
+          $("runs").innerHTML =
+            `<div class="empty">No runs recorded yet.</div>`;
+          return;
+        }
+        const byRun = (id) => sessions.filter((s) => s.run_id === id);
+        $("runs").innerHTML = `<div class="tablewrap"><table>
+          <thead><tr>
+            <th style="width:14px"></th><th>Run</th><th>Trigger</th><th>Started</th>
+            <th>Duration</th><th class="num">Findings</th><th class="num">Issues</th>
+            <th class="num">Sessions</th><th class="num">PRs</th><th>Status</th>
+          </tr></thead>
+          <tbody>${rows
+            .map(
+              (r, i) => `
+            <tr class="run" data-idx="${i}">
+              <td><span class="caret">▸</span></td>
+              <td>${esc(r.run_id)}</td>
+              <td>${badge(r.trigger_source)}</td>
+              <td>${fmtTime(r.started_at)}</td>
+              <td>${fmtDuration(r.started_at, r.finished_at)}</td>
+              <td class="num">${esc(r.findings_discovered ?? 0)}</td>
+              <td class="num">${esc(r.issues_filed ?? 0)}</td>
+              <td class="num">${esc(r.sessions_launched ?? 0)}</td>
+              <td class="num">${esc(r.prs_opened ?? 0)}</td>
+              <td>${badge(r.status)}</td>
+            </tr>
+            ${drilldown(byRun(r.run_id)).replace("<tr>", `<tr class="dd" data-idx="${i}" style="display:none">`)}`,
+            )
+            .join("")}</tbody></table></div>`;
+
+        $("runs")
+          .querySelectorAll("tr.run")
+          .forEach((tr) =>
+            tr.addEventListener("click", () => {
+              const dd = $("runs").querySelector(
+                `tr.dd[data-idx="${tr.dataset.idx}"]`,
+              );
+              const open = dd.style.display !== "none";
+              dd.style.display = open ? "none" : "table-row";
+              tr.querySelector(".caret").textContent = open ? "▸" : "▾";
+            }),
+          );
+      }
+
+      function renderFunnel(runs, sessions) {
+        const sum = (k) => runs.reduce((a, r) => a + (Number(r[k]) || 0), 0);
+        const steps = [
+          ["Findings", sum("findings_discovered")],
+          ["Issues", sum("issues_filed")],
+          ["Sessions", sum("sessions_launched")],
+          ["PRs", sum("prs_opened")],
+          [
+            "CI passing",
+            sessions.filter((s) => s.ci_status === "passing").length,
+          ],
+        ];
+        const max = Math.max(1, ...steps.map(([, v]) => v));
+        $("funnel").innerHTML = `<div class="funnel">${steps
+          .map(
+            ([k, v]) =>
+              `<div class="fstep"><span>${esc(k)}</span><span class="fbar" style="width:${(v / max) * 100}%"></span><span>${esc(v)}</span></div>`,
+          )
+          .join("")}</div>`;
+      }
+
+      (async () => {
+        let data;
+        try {
+          data = await load();
+        } catch (e) {
+          $("error").style.display = "block";
+          $("error").textContent = `Could not load metrics JSON — ${e.message}`;
+          data = { runs: [], sessions: [] };
+        }
+        const runs = Array.isArray(data.runs) ? data.runs : [];
+        const sessions = Array.isArray(data.sessions) ? data.sessions : [];
+        kpis(runs, sessions);
+        renderFunnel(runs, sessions);
+        let trigger = "all";
+        renderRuns(runs, sessions, trigger);
+        document.querySelectorAll("button.f").forEach((b) =>
+          b.addEventListener("click", () => {
+            trigger = b.dataset.trigger;
+            document
+              .querySelectorAll("button.f")
+              .forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+            renderRuns(runs, sessions, trigger);
+          }),
+        );
+      })();
+    </script>
+  </body>
+</html>
