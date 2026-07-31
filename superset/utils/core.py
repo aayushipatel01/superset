@@ -574,7 +574,9 @@ def markdown(raw: str, markup_wrap: bool | None = False) -> str:
     # nh3 preserves supported link attributes and enforces a safe rel value.
     safe = nh3.clean(safe, tags=safe_markdown_tags, attributes=safe_markdown_attrs)
     if markup_wrap:
-        safe = Markup(safe)
+        # nh3.clean() above strips unsafe tags and attributes, so the value is
+        # already sanitized before being marked as safe HTML.
+        safe = Markup(safe)  # noqa: S704 # nosec B704
     return safe
 
 
