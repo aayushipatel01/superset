@@ -72,7 +72,7 @@
       "trigger_source": "manual",
       "started_at": "2026-07-31T02:40:13Z",
       "finished_at": "2026-07-31T04:25:00Z",
-      "status": "partial",
+      "status": "success",
       "findings_discovered": 5,
       "issues_filed": 5,
       "sessions_launched": 5,
