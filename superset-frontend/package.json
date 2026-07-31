@@ -440,6 +440,9 @@
     "lerna": {
       "js-yaml": "^4.3.0"
     },
+    "filelist": {
+      "minimatch": "^10.2.5"
+    },
     "@storybook/react-docgen-typescript-plugin": {
       "flat-cache": "^4.0.1"
     }
