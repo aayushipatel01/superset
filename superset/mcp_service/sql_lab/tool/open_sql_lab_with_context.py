@@ -142,15 +142,20 @@ def open_sql_lab_with_context(
                     f"-- Context: Working with dataset '{request.dataset_in_context}'\n"
                     f"-- Database: {database.database_name}\n"
                 )
+                quote = database.quote_identifier
                 if request.schema_name:
                     context_comment += f"-- Schema: {request.schema_name}\n"
                     table_reference = (
-                        f"{request.schema_name}.{request.dataset_in_context}"
+                        f"{quote(request.schema_name)}"
+                        f".{quote(request.dataset_in_context)}"
                     )
                 else:
-                    table_reference = request.dataset_in_context
+                    table_reference = quote(request.dataset_in_context)
 
-                context_comment += f"\nSELECT * FROM {table_reference} LIMIT 100;"
+                # table_reference is dialect-quoted above and the statement is
+                # only pre-filled text for the SQL Lab editor
+                preview = f"\nSELECT * FROM {table_reference} LIMIT 100;"  # nosec B608
+                context_comment += preview
                 params["sql"] = context_comment
 
         # Construct SQL Lab URL with full base URL
