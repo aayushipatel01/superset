@@ -1,3 +1,19 @@
+# 🤖 Devin Automated Remediation — Take-Home Assessment Context
+
+This fork contains a working event-driven Devin automation that scans this
+codebase for dependency and static-security findings, files GitHub issues,
+and autonomously remediates them. See the merged pull requests and
+`devin-fix`-labeled issues in this repo for the actual results.
+
+The orchestrator's source code, prompts, playbook, and dashboard are
+documented separately in
+[devin-superset-remediation](https://github.com/aayushipatel01/devin-superset-remediation).
+
+To trigger a real run yourself: go to this repo's **Actions** tab → "Devin
+scan orchestrator (manual)" → **Run workflow**.
+
+---
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
