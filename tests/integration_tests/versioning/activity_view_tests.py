@@ -532,7 +532,6 @@ class TestDashboardActivityView(SupersetTestCase):
 
         import sqlalchemy as sa
         from sqlalchemy_continuum import versioning_manager
-
         from superset.tasks.version_history_retention import (
             _prune_old_versions_impl,
         )
