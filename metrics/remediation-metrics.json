@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260803T210131Z-a554f1",
+      "trigger_source": "scheduled",
+      "started_at": "2026-08-03T21:01:31Z",
+      "finished_at": "2026-08-03T22:04:47Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 3,
+      "sessions_launched": 3,
+      "prs_opened": 3
     }
   ],
   "sessions": [
@@ -409,6 +420,36 @@
       "scan_before": "npm audit (superset-frontend): \"jake\" severity=high range=\"8.0.14 - 10.9.4\" fixAvailable=true",
       "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"jake\"] -> null (entry absent)",
       "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-8dcf9b5dc97241ac96fd5d8da7e8ffbc",
+      "run_id": "run-20260803T210131Z-a554f1",
+      "issue_number": 89,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/93",
+      "scan_before": "superset-frontend / superset-embedded-sdk / superset-frontend/cypress-base: npm audit --json | jq '.vulnerabilities[\"fast-uri\"]' -> {\"name\":\"fast-uri\",\"severity\":\"high\",\"via\":[{\"url\":\"https://github.com/advisories/GHSA-7p8r-x3mc-p8w7\",\"range\":\">=3.0.0 <3.1.5\"}],\"range\":\"3.0.0 - 3.1.4\",\"fixAvailable\":true}\ndocs: yarn audit --json | grep -c GHSA-7p8r-x3mc-p8w7 -> 12",
+      "scan_after": "superset-frontend -> null\nsuperset-embedded-sdk -> null\nsuperset-frontend/cypress-base -> null\ndocs: yarn audit --json | grep -c GHSA-7p8r-x3mc-p8w7 -> 0",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-5bca31e41eaf48769c41e1e988683bdd",
+      "run_id": "run-20260803T210131Z-a554f1",
+      "issue_number": 90,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/92",
+      "scan_before": "$ cd superset-frontend && npm audit --json | jq '.vulnerabilities[\"ip-address\"]'\n{\n  \"name\": \"ip-address\",\n  \"severity\": \"high\",\n  \"isDirect\": false,\n  \"via\": [{\"source\": 1130722, \"url\": \"https://github.com/advisories/GHSA-mwp4-54f8-5fhr\", \"severity\": \"high\", \"range\": \"<=10.3.0\"}, {\"source\": 1130723, \"url\": \"https://github.com/advisories/GHSA-4xrf-jv44-h6hh\", \"severity\": \"moderate\"}, {\"source\": 1130724, \"url\": \"https://github.com/advisories/GHSA-22jq-vg5j-6vgg\", \"severity\": \"moderate\"}],\n  \"range\": \"<=10.3.0\",\n  \"nodes\": [\"node_modules/ip-address\"],\n  \"fixAvailable\": true\n}\n$ npm audit --json | jq '.metadata.vulnerabilities'\n{\"info\":0,\"low\":0,\"moderate\":1,\"high\":4,\"critical\":1,\"total\":6}",
+      "scan_after": "$ cd superset-frontend && npm audit --json | jq '.vulnerabilities[\"ip-address\"]'\nnull\n$ npm audit --json | jq '.metadata.vulnerabilities'\n{\"info\":0,\"low\":0,\"moderate\":1,\"high\":3,\"critical\":1,\"total\":5}",
+      "ci_status": "failing"
+    },
+    {
+      "session_id": "devin-d68a3ebb377648e4ad0a49a27fabb738",
+      "run_id": "run-20260803T210131Z-a554f1",
+      "issue_number": 91,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/94",
+      "scan_before": "$ cd superset-frontend && npm audit --json | jq '.vulnerabilities[\"undici\"]'\n{ \"name\": \"undici\", \"severity\": \"high\", \"isDirect\": false, \"via\": [GHSA-8xcm-r25x-g524, GHSA-4cwx-7wf7-3272 (high), GHSA-m8rv-5g2x-5cg5, GHSA-jr45-8vmc-qm54, GHSA-v3r7-h72x-cjcm \u2014 all range >=7.0.0 <7.29.0], \"range\": \"7.0.0 - 7.28.0\", \"nodes\": [\"node_modules/undici\"], \"fixAvailable\": true }\nmetadata.vulnerabilities: { info: 0, low: 0, moderate: 1, high: 4, critical: 1, total: 6 }",
+      "scan_after": "$ cd superset-frontend && npm audit --json | jq '.vulnerabilities[\"undici\"]'\nnull\nmetadata.vulnerabilities: { info: 0, low: 0, moderate: 1, high: 3, critical: 1, total: 5 }\nremaining keys: brace-expansion, eslint-plugin-i18n-strings, fast-uri, ip-address, nx",
+      "ci_status": "failing"
     }
   ]
 }
