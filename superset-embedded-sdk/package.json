@@ -49,6 +49,9 @@
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4"
   },
+  "overrides": {
+    "fast-uri": "^3.1.5"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/apache/superset.git",
