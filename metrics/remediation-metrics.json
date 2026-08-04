@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260804T210129Z-8cbd8b",
+      "trigger_source": "scheduled",
+      "started_at": "2026-08-04T21:01:29Z",
+      "finished_at": "2026-08-04T21:25:00Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 1,
+      "sessions_launched": 1,
+      "prs_opened": 1
     }
   ],
   "sessions": [
@@ -409,6 +420,16 @@
       "scan_before": "npm audit (superset-frontend): \"jake\" severity=high range=\"8.0.14 - 10.9.4\" fixAvailable=true",
       "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"jake\"] -> null (entry absent)",
       "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-04e042c7f8fd45e88d3d04e0cb391353",
+      "run_id": "run-20260804T210129Z-8cbd8b",
+      "issue_number": 96,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/97",
+      "scan_before": "cryptography 49.0.0 | PYSEC-2026-3552 (GHSA-g6cj-pr64-35w5, CVE-2026-69247) | sev=HIGH | fixed=['50.0.0']",
+      "scan_after": "Found 2 known vulnerabilities in 2 packages: flask 2.3.3 PYSEC-2026-2151; paramiko 3.5.1 PYSEC-2026-2858 (cryptography no longer reported)",
+      "ci_status": "pending"
     }
   ]
 }
