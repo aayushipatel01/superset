@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260806T210106Z-e86894",
+      "trigger_source": "scheduled",
+      "started_at": "2026-08-06T21:01:06Z",
+      "finished_at": "2026-08-06T21:34:29Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 1,
+      "sessions_launched": 1,
+      "prs_opened": 1
     }
   ],
   "sessions": [
@@ -409,6 +420,16 @@
       "scan_before": "npm audit (superset-frontend): \"jake\" severity=high range=\"8.0.14 - 10.9.4\" fixAvailable=true",
       "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"jake\"] -> null (entry absent)",
       "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-3600d847491b40b8880c607ca14d5dbb",
+      "run_id": "run-20260806T210106Z-e86894",
+      "issue_number": 100,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/101",
+      "scan_before": "js-yaml 3.15.0/4.3.0 | GHSA-5p4m-2wfm-xmqj ['CVE-2026-59870'] | sev=HIGH | fixed=['3.15.1','4.3.1']",
+      "scan_after": "No js-yaml advisory in superset-frontend/ or superset-frontend/cypress-base/ (resolved js-yaml 3.15.1 and 4.3.1)",
+      "ci_status": "pending"
     }
   ]
 }
