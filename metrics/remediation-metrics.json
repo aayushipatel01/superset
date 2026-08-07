@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260807T210139Z-cdd372",
+      "trigger_source": "scheduled",
+      "started_at": "2026-08-07T21:01:39Z",
+      "finished_at": "2026-08-07T21:04:50Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 0,
+      "sessions_launched": 0,
+      "prs_opened": 0
     }
   ],
   "sessions": [
