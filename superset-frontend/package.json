@@ -443,6 +443,7 @@
     "filelist": {
       "minimatch": "^10.2.5"
     },
+    "nanoid@3": "3.3.17",
     "@storybook/react-docgen-typescript-plugin": {
       "flat-cache": "^4.0.1"
     }
