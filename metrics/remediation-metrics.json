@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260808T210130Z-9564bc",
+      "trigger_source": "scheduled",
+      "started_at": "2026-08-08T21:01:30Z",
+      "finished_at": "2026-08-08T21:30:00Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 1,
+      "sessions_launched": 1,
+      "prs_opened": 1
     }
   ],
   "sessions": [
@@ -409,6 +420,16 @@
       "scan_before": "npm audit (superset-frontend): \"jake\" severity=high range=\"8.0.14 - 10.9.4\" fixAvailable=true",
       "scan_after": "npm audit (superset-frontend): .vulnerabilities[\"jake\"] -> null (entry absent)",
       "ci_status": "passing"
+    },
+    {
+      "session_id": "devin-98787fa4efe140ed8d7e49f9768d3c76",
+      "run_id": "run-20260808T210130Z-9564bc",
+      "issue_number": 104,
+      "status": "success",
+      "pr_url": "https://github.com/aayushipatel01/superset/pull/105",
+      "scan_before": "superset-frontend: nanoid high, range <=3.3.16, nodes [postcss/node_modules/nanoid, react-checkbox-tree/node_modules/nanoid], via GHSA-28wg-ghj8-5hjv (<3.3.16) + GHSA-2v37-7h3g-55p8 (<3.3.17); superset-websocket: nanoid high, range <3.3.17; superset-embedded-sdk: nanoid high, range <3.3.17",
+      "scan_after": "superset-frontend: no nanoid entry in npm audit (postcss/nanoid 3.3.17, react-checkbox-tree/nanoid 3.3.17, top-level nanoid 6.0.0); superset-websocket: clean (nanoid 3.3.17); superset-embedded-sdk: clean (nanoid 3.3.17)",
+      "ci_status": "pending"
     }
   ]
 }
