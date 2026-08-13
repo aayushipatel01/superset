@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20260813T210202Z-12f3db",
+      "trigger_source": "scheduled",
+      "started_at": "2026-08-13T21:02:02Z",
+      "finished_at": "2026-08-13T21:04:36Z",
+      "status": "success",
+      "findings_discovered": 5,
+      "issues_filed": 0,
+      "sessions_launched": 0,
+      "prs_opened": 0
     }
   ],
   "sessions": [
