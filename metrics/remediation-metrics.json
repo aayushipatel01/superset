@@ -77,6 +77,17 @@
       "issues_filed": 5,
       "sessions_launched": 5,
       "prs_opened": 5
+    },
+    {
+      "run_id": "run-20261105T210836Z-6181d3",
+      "trigger_source": "scheduled",
+      "started_at": "2026-11-05T21:08:36Z",
+      "finished_at": "2026-11-05T21:12:20Z",
+      "status": "partial",
+      "findings_discovered": 5,
+      "issues_filed": 0,
+      "sessions_launched": 0,
+      "prs_opened": 0
     }
   ],
   "sessions": [
